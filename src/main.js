@@ -8,8 +8,9 @@ import qs from 'qs'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.css'
 
+
 Vue.prototype.$axios = Axios
-Vue.prototype.HOST = '/localhost:8081'
+Vue.prototype.HOST = "/zblog_api";
 
 // Vue.config.productionTip = false
 
