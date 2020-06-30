@@ -18,7 +18,6 @@ export default {
   name: "Header",
   data() {
     return {
-      title: this.title
     };
   },
   props: {
@@ -42,6 +41,7 @@ export default {
   padding-top: 250px;
   padding-bottom: 250px;
   margin-bottom: 45px;
+  text-align: center;
 }
 h1 {
   font: Arial, sans-serif;

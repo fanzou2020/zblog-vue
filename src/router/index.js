@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Index from '@/pages/Index'
 import Homepage from '@/pages/Homepage'
 import BlogContent from '@/pages/BlogContent'
+import Login from '@/pages/Login'
 
 Vue.use(Router)
 
@@ -26,6 +27,12 @@ export default new Router({
           component: BlogContent
         }
       ]
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     }
   ]
-})
+});
+

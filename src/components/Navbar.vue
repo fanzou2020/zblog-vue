@@ -11,16 +11,29 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <!--  -->
-    <div
-      class="collapse navbar-collapse justify-content-end"
-      id="collapsibleNavId"
-    >
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse " id="collapsibleNavId">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <router-link tag="a" to="/" class="nav-link">Home</router-link>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav" v-if="!this.$store.getters.getLogin">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sign Up</a>
+        </li>
+        <li>
+          <router-link tag="a" to="/login" class="nav-link">Login</router-link>
+        </li>
+      </ul>
+      <ul class="navbar-nav" v-if="this.$store.getters.getLogin">
+        <li class="nav-item">
+          <a class="nav-link" href="#">{{ this.$store.getters.getUsername }}</a>
+        </li>
+        <li>
+          <a @click="logout" class="nav-link">Logout</a>
         </li>
       </ul>
     </div>
@@ -32,6 +45,21 @@ export default {
   name: "Navbar",
   data() {
     return {};
+  },
+  methods: {
+    logout(event) {
+      const logoutUrl = this.HOST + "/logout";
+      this.$axios
+        .get(logoutUrl)
+        .then(res => {
+          console.log(res);
+          this.$store.dispatch("updateLogin", false);
+          this.$store.dispatch("updateUsername", "");
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   }
 };
 </script>
