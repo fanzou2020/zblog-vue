@@ -52,6 +52,7 @@
 
 <script>
 import Navbar from "@/components/Navbar";
+import qs from "qs"
 
 export default {
   name: "Login",
@@ -70,10 +71,10 @@ export default {
       this.hasError = true;
       const loginUrl = this.HOST + "/login";
       this.$axios
-        .post(loginUrl, {
+        .post(loginUrl, qs.stringify({
           username: this.username,
           password: this.password
-        })
+        }))
         .then(res => {
           // if login successfully, change login state and login username in store.
           if (res.status === 200) {

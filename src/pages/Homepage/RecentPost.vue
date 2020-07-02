@@ -1,11 +1,9 @@
 <template>
   <div id="recent-post">
     <h4>Recent post</h4>
-    <ul class="">
     <router-link tag="li" :to="{name: 'BlogContent', params: {username: item.username, blogId: item.blogId} }" v-for="(item, index) in postsData" :key="index">
       {{ item.title }}<br>
     </router-link>
-    </ul>
   </div>
 </template>
 

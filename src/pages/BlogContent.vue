@@ -3,9 +3,9 @@
     <div id="blog-header">
       <div class="container justify-content-center align-selfc-center">
         <h1>{{ blog.title }}</h1>
-        <div v-for="(item, index) in blog.tags" :key="index">
+        <TagItem v-for="(item, index) in blog.tags" :key="index" :tagObj="item">
           {{ item.tag }}
-        </div>
+        </TagItem>
         <div class="post-info mb-2">
           by {{ blog.username }} at {{ blog.createTime }}
         </div>
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import TagItem from "@/components/TagItem"
 import Footer from "@/components/Footer";
 import Comment from "@/components/Comment";
 
@@ -44,7 +45,8 @@ export default {
   },
   components: {
     Footer,
-    Comment
+    Comment,
+    TagItem
   },
   created() {
     const blogUrl =

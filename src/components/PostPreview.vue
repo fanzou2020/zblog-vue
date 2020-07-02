@@ -7,12 +7,17 @@
     </router-link>
     <!--  -->
     <div class="post-info mb-2">by {{ username }} at {{ createTime }}</div>
-    <div class="post-tag" v-for="(item, index) in tags" :key="index">tag: {{ item.tag }}</div>
+    <span class="post-tag" v-for="(item, index) in tags" :key="index">
+      <TagItem :tagObj="item"></TagItem>&nbsp;
+    </span>
     <hr/> 
   </div>
 </template>
 
 <script>
+
+import TagItem from '@/components/TagItem'
+
 export default {
   name: "PostPreview",
   data() {
@@ -30,6 +35,9 @@ export default {
       type: Object,
       required: true
     }
+  },
+  components: {
+    TagItem
   }
 };
 </script>

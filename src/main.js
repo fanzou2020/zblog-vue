@@ -4,7 +4,6 @@ import Vue from "vue";
 import App from "./App";
 import router from "./router";
 import Axios from "axios";
-import qs from "qs";
 import store from "./store";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
@@ -15,18 +14,18 @@ Vue.prototype.HOST = "/zblog_api";
 // Vue.config.productionTip = false
 
 // 添加请求拦截器
-Axios.interceptors.request.use(
-  function(config) {
-    if (config.method === "post") {
-      config.data = qs.stringify(config.data);
-    }
-    return config;
-  },
-  function(error) {
-    // 对请求错误做些什么
-    return Promise.reject(error);
-  }
-);
+// Axios.interceptors.request.use(
+//   function(config) {
+//     if (config.method === "post") {
+//       config.data = qs.stringify(config.data);
+//     }
+//     return config;
+//   },
+//   function(error) {
+//     // 对请求错误做些什么
+//     return Promise.reject(error);
+//   }
+// );
 
 /* eslint-disable no-new */
 var vm = new Vue({
@@ -64,7 +63,8 @@ var vm = new Vue({
 // before each router change, check whether the session in server has expired.
 router.beforeEach((to, from, next) => {
   // to and from are both route objects. must call `next`.
-  if (to.name != "Login" && vm.$store.getters.getLogin === true) {
+  // if (to.name != "Login" && vm.$store.getters.getLogin === true) {
+  if (to.name !== "Login") {
     console.log("Check login status in beforeEach route guard");
     // console.log()
     vm.checkLogin();

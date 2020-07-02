@@ -1,7 +1,7 @@
 <template>
   <div id="category">
     <h4>Categories</h4>
-    <p v-for="(item, index) in categories" :key="index">{{ item }}</p>
+    <router-link tag="li" v-for="(item, index) in categories" :key="index" :to="{name: 'CategoryPage', params: {name: item}}">{{ item }}</router-link>
   </div>
 </template>
 
@@ -34,4 +34,13 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+li {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+li:hover {
+  color: grey;
+}
+</style>

@@ -1,13 +1,15 @@
 <template>
   <div id="tag">
-    <h4>Tag</h4>
-    <p v-for="(item, index) in tags" :key="index">
-      tag: {{ item.tag }}
-    </p>
+    <h4>Tags</h4>
+    <span v-for="(item, index) in tags" :key="index">
+      <TagItem :tagObj="item"></TagItem>&nbsp;
+    </span>
   </div>
 </template>
 
 <script>
+import TagItem from '@/components/TagItem'
+
 export default {
   name: "Tag",
   data() {
@@ -20,6 +22,9 @@ export default {
       type: String,
       default: "zoufan"
     }
+  },
+  components: {
+    TagItem
   },
   created() {
     const tagsUrl = this.HOST + "/api/tags/" + this.username;

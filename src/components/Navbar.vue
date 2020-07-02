@@ -17,7 +17,8 @@
           <router-link tag="a" to="/" class="nav-link">Home</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <router-link tag="a" to="/tags" class="nav-link">Tags</router-link>
+          <!-- <a class="nav-link" href="#">Tags</a> -->
         </li>
       </ul>
       <ul class="navbar-nav" v-if="!this.$store.getters.getLogin">
@@ -30,9 +31,12 @@
       </ul>
       <ul class="navbar-nav" v-if="this.$store.getters.getLogin">
         <li class="nav-item">
+          <router-link tag="button" class="nav-link btn btn-secondary mr-3" to="/create">+ New Blog</router-link>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="#">{{ this.$store.getters.getUsername }}</a>
         </li>
-        <li>
+        <li class="nav-item">
           <a @click="logout" class="nav-link">Logout</a>
         </li>
       </ul>
