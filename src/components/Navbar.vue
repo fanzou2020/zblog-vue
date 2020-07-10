@@ -34,6 +34,9 @@
           <router-link tag="button" class="nav-link btn btn-secondary mr-3" to="/create">+ New Blog</router-link>
         </li>
         <li class="nav-item">
+          <router-link tag="a" class="nav-link" to="/manage">Manage</router-link>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="#">{{ this.$store.getters.getUsername }}</a>
         </li>
         <li class="nav-item">
@@ -63,6 +66,7 @@ export default {
         .catch(error => {
           console.log(error);
         });
+      this.$router.push("/")
     }
   }
 };

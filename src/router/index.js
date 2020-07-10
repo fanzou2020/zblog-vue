@@ -6,7 +6,13 @@ import BlogContent from "@/pages/BlogContent";
 import Login from "@/pages/Login";
 import TagsPage from "@/pages/TagsPage";
 import CategoryPage from "@/pages/CategoryPage";
-import CreateBlog from "@/pages/CreateBlog"
+import CreateBlog from "@/pages/CreateBlog";
+import EditBlogPage from "@/pages/EditBlogPage";
+import ManagePage from "@/pages/ManagePage";
+import ManageBlogs from "@/pages/ManagePage/ManageBlogs";
+import ManageCategories from "@/pages/ManagePage/ManageCategories";
+import ManageTags from "@/pages/ManagePage/ManageTags";
+import ManageComments from "@/pages/ManagePage/ManageComments";
 
 Vue.use(Router);
 
@@ -44,6 +50,39 @@ export default new Router({
           path: "/create",
           name: "CreateBlog",
           component: CreateBlog
+        },
+        {
+          path: "/edit/:blogId",
+          name: "EditBlogPage",
+          component: EditBlogPage
+        },
+        {
+          path: "/manage",
+          name: "ManagePage",
+          redirect: "/manage/blogs",
+          component: ManagePage,
+          children: [
+            {
+              path: "/manage/blogs",
+              name: "ManageBlogs",
+              component: ManageBlogs
+            },
+            {
+              path: "/manage/categories",
+              name: "ManageCategories",
+              component: ManageCategories
+            },
+            {
+              path: "/manage/tags",
+              name: "ManageTags",
+              component: ManageTags
+            },
+            {
+              path: "/manage/comments",
+              name: "ManageComments",
+              component: ManageComments
+            }
+          ]
         }
       ]
     },
