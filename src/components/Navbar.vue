@@ -16,10 +16,6 @@
         <li class="nav-item active">
           <router-link tag="a" to="/" class="nav-link">Home</router-link>
         </li>
-        <li class="nav-item">
-          <router-link tag="a" to="/tags" class="nav-link">Tags</router-link>
-          <!-- <a class="nav-link" href="#">Tags</a> -->
-        </li>
       </ul>
       <ul class="navbar-nav" v-if="!this.$store.getters.getLogin">
         <li class="nav-item">
@@ -37,7 +33,7 @@
           <router-link tag="a" class="nav-link" to="/manage">Manage</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">{{ this.$store.getters.getUsername }}</a>
+          <router-link tag="a" class="nav-link" to="/home">{{ this.$store.getters.getUsername }}</router-link>
         </li>
         <li class="nav-item">
           <a @click="logout" class="nav-link">Logout</a>
@@ -54,19 +50,27 @@ export default {
     return {};
   },
   methods: {
-    logout(event) {
+    goToHomepage() {
+      // if already login, go to login user's homepage
+      if (this.$store.getters.getLogin) {
+        this.$store.commit("updateHomepageUsername", this.$store.getters.getUsername)
+      }
+      this.$router.push("/").catch(err => err)
+    },
+
+    async logout(event) {
       const logoutUrl = this.HOST + "/logout";
-      this.$axios
+      await this.$axios
         .get(logoutUrl)
         .then(res => {
           console.log(res);
-          this.$store.dispatch("updateLogin", false);
-          this.$store.dispatch("updateUsername", "");
+          this.$store.commit("updateLogin", false);
+          this.$store.commit("updateUsername", "zoufan");
         })
         .catch(error => {
           console.log(error);
         });
-      this.$router.push("/")
+      this.$router.push("/").catch(err => err)
     }
   }
 };

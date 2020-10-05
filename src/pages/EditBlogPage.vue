@@ -14,16 +14,18 @@ export default {
   data() {
     return {
       blog: {},
-      finish: false
+      finish: false,
+      username: ''
     }
   },
-  props: {
-    username: {
-      type: String,
-      default: "zoufan"
-    }
-  },
+  // props: {
+  //   username: {
+  //     type: String,
+  //     default: "zoufan"
+  //   }
+  // },
   async created() {
+    this.username = this.$store.getters.getUsername;
     const blogUrl = this.HOST + "/api/blogs/" + this.username + "/" + this.$route.params.blogId
     await this.$axios.get(blogUrl)
     .then(res => {

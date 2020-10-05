@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Index from "@/pages/Index";
+import MainPage from "@/pages/MainPage"
 import Homepage from "@/pages/Homepage";
 import BlogContent from "@/pages/BlogContent";
 import Login from "@/pages/Login";
@@ -24,8 +25,13 @@ export default new Router({
       path: "/",
       name: "Index",
       component: Index,
-      redirect: "/home",
+      redirect: "/main",
       children: [
+        {
+          path: "/main",
+          name: "MainPage",
+          component: MainPage
+        },
         {
           path: "/home",
           name: "Homepage",

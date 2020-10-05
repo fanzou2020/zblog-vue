@@ -38,27 +38,23 @@ var vm = new Vue({
   methods: {
     // check whether user has login to page
     checkLogin() {
+      console.log("Check login status");
       const checkLoginUrl = this.HOST + "/api/checkLoginUser";
       this.$axios
         .get(checkLoginUrl)
         .then(res => {
           // if user has already login.
           // console.log(res);
-          this.$store.dispatch("updateLogin", true);
-          this.$store.dispatch("updateUsername", res.data);
+          this.$store.commit("updateLogin", true);
+          this.$store.commit("updateUsername", res.data);
         })
         .catch(error => {
           // console.log(error);
-          this.$store.dispatch("updateLogin", false);
-          this.$store.dispatch("updateUsername", "");
+          this.$store.commit("updateLogin", false);
+          this.$store.commit("updateUsername", "");
         });
     }
   },
-
-  // check whether user has login before this page has been created.
-  created() {
-    this.checkLogin();
-  }
 });
 
 // before each router change, check whether the session in server has expired.
@@ -66,7 +62,6 @@ router.beforeEach((to, from, next) => {
   // to and from are both route objects. must call `next`.
   // if (to.name != "Login" && vm.$store.getters.getLogin === true) {
   if (to.name !== "Login") {
-    console.log("Check login status in beforeEach route guard");
     // console.log()
     vm.checkLogin();
   }

@@ -27,19 +27,20 @@ export default {
   name: "ManageBlogs",
   data() {
     return {
-      blogs: []
+      blogs: [],
+      username: ''
     };
   },
   components: {},
-  props: {
-    username: {
-      type: String,
-      default: "zoufan"
-    }
-  },
+  // props: {
+  //   username: {
+  //     type: String,
+  //     default: "zoufan"
+  //   }
+  // },
   methods: {
     deleteBlog(blogId) {
-      var r = confirm("Are you sure to delete this category?");
+      var r = confirm("Are you sure to delete this blog?");
       if (r == true) {
         const deleteBlogUrl = this.HOST + "/api/blogs/" + this.username + "/" + blogId;
         this.$axios.delete(deleteBlogUrl)
@@ -54,6 +55,7 @@ export default {
     }
   },
   created() {
+    this.username = this.$store.getters.getUsername;
     const blogsUrl = this.HOST + "/api/blogs/" + this.username;
     this.$axios
       .get(blogsUrl)

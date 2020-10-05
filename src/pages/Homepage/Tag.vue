@@ -14,20 +14,16 @@ export default {
   name: "Tag",
   data() {
     return {
-      tags: []
+      tags: [],
+      homepageUsername: ''
     };
-  },
-  props: {
-    username: {
-      type: String,
-      default: "zoufan"
-    }
   },
   components: {
     TagItem
   },
   created() {
-    const tagsUrl = this.HOST + "/api/tags/" + this.username;
+    this.homepageUsername = this.$store.getters.getHomepageUsername;
+    const tagsUrl = this.HOST + "/api/tags/" + this.homepageUsername;
     this.$axios
       .get(tagsUrl)
       .then(res => {

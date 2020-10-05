@@ -94,7 +94,8 @@ export default {
       newCategoryFlag: false,
       newCategoryValue: "",
       blog: {},
-      blogId: -1
+      blogId: -1,
+      username: ""
     };
   },
   methods: {
@@ -236,13 +237,9 @@ export default {
         (this.newCategoryValue = ""),
         (this.blog = {}),
         (this.blogId = -1);
-    }
+    },
   },
   props: {
-    username: {
-      type: String,
-      default: "zoufan"
-    },
     edit: {
       type: Boolean,
       default: false
@@ -256,8 +253,7 @@ export default {
   },
 
   created() {
-    console.log(this.editBlog);
-    console.log(this.edit);
+    this.username = this.$store.getters.getUsername;
     // get the tags
     const tagsUrl = this.HOST + "/api/tags/" + this.username;
     this.$axios

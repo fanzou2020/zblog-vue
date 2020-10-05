@@ -16,22 +16,19 @@ export default {
   name: "CategoryPage",
   data() {
     return {
-      postsData: []
+      postsData: [],
+      homepageUsername: ''
     };
   },
   components: {
     PostPreview,
     Header
   },
-  props: {
-    username: {
-      type: String,
-      default: 'zoufan'
-    }
-  },
+
   created() {
+    this.homepageUsername = this.$store.getters.getHomepageUsername;
     console.log(this.$router.params)
-    const categoryUrl = this.HOST + '/api/blogs/' + this.username + '/category/' + this.$route.params.name
+    const categoryUrl = this.HOST + '/api/blogs/' + this.homepageUsername + '/category/' + this.$route.params.name
     this.$axios.get(categoryUrl)
     .then(res => {
       // console.log(res);

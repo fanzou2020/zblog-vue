@@ -18,19 +18,21 @@ export default {
   name: "ManageCategories",
   data() {
     return {
-      categories: []
+      categories: [],
+      username: ''
     };
   },
   components: {
     CategoryLine
   },
-  props: {
-    username: {
-      type: String,
-      default: "zoufan"
-    }
-  },
+  // props: {
+  //   username: {
+  //     type: String,
+  //     default: "zoufan"
+  //   }
+  // },
   created() {
+    this.username = this.$store.getters.getUsername;
     const categoriesUrl = this.HOST + "/api/categories/" + this.username;
     this.$axios
       .get(categoriesUrl)

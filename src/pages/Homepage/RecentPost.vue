@@ -12,17 +12,13 @@ export default {
   name: "RecentPost",
   data() {
     return {
-      postsData: []
+      postsData: [],
+      homepageUsername: ''
     };
   },
-  props: {
-    username: {
-      type: String,
-      default: "zoufan"
-    }
-  },
   created() {
-    const postlistUrl = this.HOST + "/api/blogs/" + this.username;
+    this.homepageUsername = this.$store.getters.getHomepageUsername
+    const postlistUrl = this.HOST + "/api/blogs/" + this.homepageUsername;
     this.$axios
       .get(postlistUrl)
       .then(res => {

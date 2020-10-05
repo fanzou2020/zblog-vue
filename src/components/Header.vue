@@ -5,7 +5,7 @@
       <!-- <div class="col"> -->
       <h1>
         {{ title }}<br />
-        <small>subtitle</small>
+        <small>{{ subtitle }}</small>
       </h1>
       <!-- </div> -->
       <!-- </div> -->
@@ -18,13 +18,12 @@ export default {
   name: "Header",
   data() {
     return {
+      title: '',
+      subtitle: ''
     };
   },
-  props: {
-    title: {
-      type: String,
-      default: "Welcome to Homepage"
-    }
+  created() {
+    this.title = "Welcome to " + this.$store.getters.getHomepageUsername + "'s Homepage!"
   }
 };
 </script>

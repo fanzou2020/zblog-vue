@@ -7,7 +7,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isLogin: false,
-    username: ""
+    username: "",
+    homepageUsername: "zoufan"
   },
 
   getters: {
@@ -16,6 +17,9 @@ export default new Vuex.Store({
     },
     getUsername(state) {
       return state.username;
+    },
+    getHomepageUsername(state) {
+      return state.homepageUsername;
     }
   },
   mutations: {
@@ -28,6 +32,11 @@ export default new Vuex.Store({
       if (typeof usernameData === "string") {
         state.username = usernameData;
       }
+    },
+    updateHomepageUsername(state, homepageUsernameData) {
+      if (typeof homepageUsernameData === "string") {
+        state.homepageUsername = homepageUsernameData
+      }
     }
   },
   actions: {
@@ -36,6 +45,9 @@ export default new Vuex.Store({
     },
     updateUsername(context, usernameData) {
       context.commit("updateUsername", usernameData);
+    },
+    updateHomepageUsername(context, homepageUsernameData) {
+      context.commit("updateHomepageUsername", homepageUsernameData);
     }
   }
 });

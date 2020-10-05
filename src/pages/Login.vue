@@ -78,8 +78,9 @@ export default {
         .then(res => {
           // if login successfully, change login state and login username in store.
           if (res.status === 200) {
-            this.$store.dispatch('updateLogin', true);
-            this.$store.dispatch('updateUsername', this.username)
+            this.$store.commit('updateLogin', true);
+            this.$store.commit('updateUsername', this.username)
+            this.$store.commit('updateHomepageUsername', this.username)
             this.$router.push("/");
           }
           else {

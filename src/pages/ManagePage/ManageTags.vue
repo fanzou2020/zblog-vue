@@ -20,19 +20,15 @@ export default {
   name: "ManageTags",
   data() {
     return {
-      tags: []
+      tags: [],
+      username: ''
     };
-  },
-  props: {
-    username: {
-      type: String,
-      default: "zoufan"
-    }
   },
   components: {
     TagLine
   },
   created() {
+    this.username = this.$store.getters.getUsername;
     const tagsUrl = this.HOST + "/api/tags/" + this.username;
     this.$axios
       .get(tagsUrl)

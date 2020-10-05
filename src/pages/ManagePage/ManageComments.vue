@@ -30,15 +30,16 @@ export default {
   data() {
     return {
       comments: [],
-      finish: false
+      finish: false,
+      username: ''
     };
   },
-  props: {
-    username: {
-      type: String,
-      default: "zoufan"
-    }
-  },
+  // props: {
+  //   username: {
+  //     type: String,
+  //     default: "zoufan"
+  //   }
+  // },
   methods: {
     deleteComment(commentId, blogId) {
       var r = confirm("Are you sure to delete this comment?");
@@ -91,6 +92,7 @@ export default {
     }
   },
   async created() {
+    this.username = this.$store.getters.getUsername;
     await this.axiosRequest();
     console.log("finish created()");
     this.finish = true;

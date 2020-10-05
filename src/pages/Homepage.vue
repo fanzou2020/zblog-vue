@@ -12,7 +12,7 @@
           <RecentPost />
           <br />
           <Category />
-          <br/>
+          <br />
           <Tag />
         </div>
       </div>
@@ -28,12 +28,14 @@ import AboutMe from "@/pages/Homepage/AboutMe";
 import RecentPost from "@/pages/Homepage/RecentPost";
 import Footer from "@/components/Footer";
 import Category from "@/pages/Homepage/Category";
-import Tag from "@/pages/Homepage/Tag"
+import Tag from "@/pages/Homepage/Tag";
 
 export default {
   name: "Homepage",
   data() {
-    return {};
+    return {
+      finish: false
+    };
   },
   components: {
     Header,

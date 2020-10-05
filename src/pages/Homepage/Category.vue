@@ -10,17 +10,13 @@ export default {
   name: "Category",
   data() {
     return {
-      categories: []
+      categories: [],
+      homepageUsername: ''
     };
   },
-  props: {
-    username: {
-      type: String,
-      default: "zoufan"
-    }
-  },
   created() {
-    const categoriesUrl = this.HOST + "/api/categories/" + this.username;
+    this.homepageUsername = this.$store.getters.getHomepageUsername;
+    const categoriesUrl = this.HOST + "/api/categories/" + this.homepageUsername;
     this.$axios
       .get(categoriesUrl)
       .then(res => {
